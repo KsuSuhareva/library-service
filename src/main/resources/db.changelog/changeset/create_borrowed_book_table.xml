@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="create_borrowed_books_table" author="suhareva">
+        <createTable tableName="borrowed_books">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="subscription_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_borrowed_subscription"
+                             referencedTableName="subscriptions" referencedColumnNames="subscription_id"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_borrowed_book"
+                             referencedTableName="books" referencedColumnNames="book_id"/>
+            </column>
+            <column name="borrowed_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="returned_date" type="date"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
