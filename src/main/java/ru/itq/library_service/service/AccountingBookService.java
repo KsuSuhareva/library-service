@@ -1,0 +1,9 @@
+package ru.itq.library_service.service;
+
+import ru.itq.library_service.model.entity.AccountingBook;
+
+import java.util.List;
+
+public interface AccountingBookService {
+    List<AccountingBook> findOverdueBooks();
+}
