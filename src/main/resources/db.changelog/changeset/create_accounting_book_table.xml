@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
 
-    <changeSet id="create_borrowed_books_table" author="suhareva">
-        <createTable tableName="borrowed_books">
-            <column name="id" type="bigint" autoIncrement="true">
+    <changeSet id="create_accounting_books_table" author="suhareva">
+        <createTable tableName="accounting_books">
+            <column name="accounting_book_id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="subscription_id" type="bigint">

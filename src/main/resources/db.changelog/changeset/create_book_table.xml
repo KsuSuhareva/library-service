@@ -17,6 +17,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="published_date" type="timestamp"/>
+            <column name="subscription_id" type="bigint"/>
         </createTable>
     </changeSet>
 

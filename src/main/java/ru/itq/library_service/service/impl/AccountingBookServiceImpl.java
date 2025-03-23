@@ -1,9 +1,10 @@
-package ru.itq.library_service.service;
+package ru.itq.library_service.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itq.library_service.model.entity.AccountingBook;
 import ru.itq.library_service.repository.AccountingBookRepository;
+import ru.itq.library_service.service.AccountingBookService;
 
 import java.time.LocalDate;
 import java.util.List;

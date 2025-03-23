@@ -1,14 +1,20 @@
 package ru.itq.library_service.controller.errorHandler;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -29,8 +35,20 @@ public class LibraryAdviceHandler {
         String errorMessage = exception.getBindingResult()
                 .getAllErrors()
                 .stream()
-                .map(error -> error.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining(", "));
+        log.warn("Catch MethodArgumentNotValidException: {}", errorMessage);
+        return new ResponseEntity<>("Validation failed: " + errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
+        Set<String> errorMessages = ex.getConstraintViolations()
+                .stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.toSet());
+        String errorMessage = String.join(", ", errorMessages);
         return new ResponseEntity<>("Validation failed: " + errorMessage, HttpStatus.BAD_REQUEST);
     }
 }

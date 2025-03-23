@@ -17,7 +17,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "borrowed_books")
+@Table(name = "accounting_books")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,6 +25,7 @@ import java.time.LocalDate;
 public class AccountingBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "accounting_book_id", nullable = false)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
