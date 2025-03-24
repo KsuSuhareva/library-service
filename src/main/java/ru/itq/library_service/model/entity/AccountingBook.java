@@ -41,8 +41,4 @@ public class AccountingBook {
 
     @Column(name = "returned_date",nullable = false)
     private LocalDate returnedDate;
-
-    public boolean isOverdue() {
-        return returnedDate == null && borrowedDate.isBefore(LocalDate.now().minusDays(20));
-    }
 }

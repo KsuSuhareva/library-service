@@ -1,6 +1,6 @@
 INSERT INTO subscriptions (user_login, user_full_name, user_email, borrow_allowed)
 VALUES
-('john_doe', 'John Doe', 'john.doe@example.com', true),
+('john_doe', 'John Doe', 'k.sukhareva@itq-group.com', true),
 ('jane_smith', 'Jane Smith', 'jane.smith@example.com', true),
 ('michael_jones', 'Michael Jones', 'michael.jones@example.com', false);
 
