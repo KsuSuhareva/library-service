@@ -36,9 +36,9 @@ public class AccountingBook {
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
-    @Column(name = "borrowed_date",nullable = false)
+    @Column(name = "borrowed_date", nullable = false)
     private LocalDate borrowedDate;
 
-    @Column(name = "returned_date",nullable = false)
+    @Column(name = "returned_date", nullable = false)
     private LocalDate returnedDate;
 }

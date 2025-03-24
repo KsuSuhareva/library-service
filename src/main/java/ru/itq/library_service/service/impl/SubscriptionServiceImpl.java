@@ -16,8 +16,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public Subscription findByFullName(String userFullName) {
-        Subscription subscription = subscriptionRepository.findByUserFullName(userFullName)
+        return subscriptionRepository.findByUserFullName(userFullName)
                 .orElseThrow(() -> new EntityNotFoundException("Абонемент не найден по ФИО: " + userFullName));
-        return subscription;
     }
 }

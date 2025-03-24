@@ -1,9 +1,7 @@
 package ru.itq.library_service.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -47,8 +45,7 @@ public class RedisQueueService {
             accountingBookService.loadBookRecords(bookRecord);
             log.info("Запись сохранена успешно {} : ", bookRecord);
         } catch (JsonProcessingException e) {
-            log.error("Данные для загрузки не корректны");
-            throw new IllegalArgumentException("Данные для загрузки не корректны");
+            log.error("Данные для загрузки не корректны: " + jsonRecords);
         }
     }
 }
