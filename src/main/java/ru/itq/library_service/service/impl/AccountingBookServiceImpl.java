@@ -2,6 +2,7 @@ package ru.itq.library_service.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.itq.library_service.dto.BookRecord;
 import ru.itq.library_service.model.entity.AccountingBook;
 import ru.itq.library_service.repository.AccountingBookRepository;
 import ru.itq.library_service.service.AccountingBookService;
@@ -18,5 +19,10 @@ public class AccountingBookServiceImpl implements AccountingBookService {
     @Override
     public List<AccountingBook> findOverdueBooks() {
         return accountingBookRepository.findByReturnedDateIsNullAndBorrowedDateBefore(LocalDate.now().minusDays(ALLOWED_PERIOD_DAYS));
+    }
+
+    @Override
+    public void loadBookRecords(BookRecord record) {
+        //сохранить
     }
 }
