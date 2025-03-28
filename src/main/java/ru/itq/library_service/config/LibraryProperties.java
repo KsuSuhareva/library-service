@@ -12,6 +12,8 @@ public class LibraryProperties {
     private String serviceName;
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
+    @Value("${spring.kafka.consumer.group-id}")
+    private String consumerGroupId;
     @Value("${publish.record.topic}")
     private String publishRecordTopic;
     @Value("${listen.record.topic}")

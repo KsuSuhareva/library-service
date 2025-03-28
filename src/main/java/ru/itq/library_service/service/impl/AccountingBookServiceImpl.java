@@ -1,12 +1,13 @@
 package ru.itq.library_service.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itq.library_service.config.LibraryProperties;
 import ru.itq.library_service.dto.BookRecord;
-import ru.itq.library_service.kafka.LibraryPublisher;
+import ru.itq.library_service.kafka.LibraryKafkaPublisher;
 import ru.itq.library_service.model.entity.AccountingBook;
 import ru.itq.library_service.model.entity.Book;
 import ru.itq.library_service.model.entity.Subscription;
@@ -27,7 +28,9 @@ public class AccountingBookServiceImpl implements AccountingBookService {
     private final SubscriptionRepository subscriptionRepository;
     private final BookRepository bookRepository;
     private final AccountingBookRepository accountingBookRepository;
-    private final LibraryPublisher libraryPublisher;
+    private final LibraryKafkaPublisher libraryPublisher;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<AccountingBook> findOverdueBooks() {
@@ -41,17 +44,15 @@ public class AccountingBookServiceImpl implements AccountingBookService {
     }
 
     @Override
-    public void loadBookRecords(BookRecord record) {
-
-    }
-
     @Transactional
-    public AccountingBook createAccountingBook(BookRecord record) {
-        Optional<Subscription> subscription = subscriptionRepository.findByUserFullName(record.getUserFullName());
+    public void saveOrUpdate(List<BookRecord> records) {
+        for (int i = 0; i < records.size(); i++) {
+            entityManager.merge(records.get(i));
 
-        List<Book> book = bookRepository.findByTitleAndAuthorAndPublishedDate(record.getBookTitle(), record.getBookAuthor(), record.getBookPublishedDate());
-
-
-        return null;
+            if (i % 50 == 0) {
+                entityManager.flush();
+                entityManager.clear();
+            }
+        }
     }
 }

@@ -16,18 +16,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class BookRecord {
-    @NotNull
     private String userLogin;
-    @NotNull
     private String userFullName;
-    @NotNull
     private String userEmail;
     private boolean borrowAllowed;
-    @NotNull
     private String bookTitle;
-    @NotNull
     private String bookAuthor;
-    @NotNull
     private LocalDateTime bookPublishedDate;
     private LocalDate borrowedDate;
     private LocalDate returnedDate;

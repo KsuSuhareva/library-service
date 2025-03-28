@@ -21,7 +21,7 @@ public class LibraryScheduler {
     @Scheduled(cron = "${notifications.cron}")
     public void checkOverdueBooks() {
         List<AccountingBook> accountingBooks = accountingBookService.findOverdueBooks();
-        if (accountingBooks.isEmpty()){
+        if (accountingBooks.isEmpty()) {
             return;
         }
 
@@ -35,10 +35,5 @@ public class LibraryScheduler {
         message.setRecipientContacts(emails);
         sender.send(message);
         log.info("Утправка уведомлений прошла успешно");
-    }
-
-    @Scheduled(fixedRate = 1000)/// каждую минуту
-    public void checkRedisQueue() {
-        log.info("Загрузка из очереди");
     }
 }
