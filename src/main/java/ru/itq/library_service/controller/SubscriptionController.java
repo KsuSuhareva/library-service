@@ -24,6 +24,6 @@ public class SubscriptionController {
 
     @GetMapping("/by-user-full-name")
     public ResponseEntity<Subscription> getByUserFullName(@RequestParam @Valid @Pattern(regexp = FIO_PATTERN) String userFullName) {
-        return new ResponseEntity<>(subscriptionService.findByFullName(userFullName), HttpStatus.OK);
+        return new ResponseEntity<>(subscriptionService.findByUserFullName(userFullName), HttpStatus.OK);
     }
 }

@@ -1,4 +1,4 @@
-package ru.itq.library_service.controller.errorHandler;
+package ru.itq.library_service.controller.handler;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

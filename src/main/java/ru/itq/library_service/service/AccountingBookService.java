@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface AccountingBookService {
     List<AccountingBook> findOverdueBooks();
+    void publishToQueue(List<BookRecord> records);
 
     void loadBookRecords(BookRecord record);
 }
