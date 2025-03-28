@@ -37,7 +37,7 @@ public class AccountingBookServiceImpl implements AccountingBookService {
     @Override
     public void publishToQueue(List<BookRecord> records) {
         records.parallelStream()
-                .forEach(record -> libraryPublisher.publish(record, properties.getPushRecordTopic()));
+                .forEach(record -> libraryPublisher.publish(record, properties.getPublishRecordTopic()));
     }
 
     @Override

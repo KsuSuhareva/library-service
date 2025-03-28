@@ -16,7 +16,6 @@ import java.util.List;
 @Slf4j
 public class LibraryScheduler {
     private final AccountingBookService accountingBookService;
-    private final RedisQueueService redisQueueService;
     private final NotificationSender sender;
 
     @Scheduled(cron = "${notifications.cron}")
@@ -41,6 +40,5 @@ public class LibraryScheduler {
     @Scheduled(fixedRate = 1000)/// каждую минуту
     public void checkRedisQueue() {
         log.info("Загрузка из очереди");
-        redisQueueService.popFromQueue();
     }
 }
