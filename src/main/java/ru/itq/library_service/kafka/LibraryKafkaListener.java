@@ -20,6 +20,6 @@ public class LibraryKafkaListener {
             groupId = "${spring.kafka.consumer.group-id}",
             containerFactory = "kafkaListenerContainerFactory")
     public void listenBatchRecord(List<BookRecord> records) {
-        accountingBookService.saveOrUpdate(records);
+        accountingBookService.saveOrUpdateBatch(records);
     }
 }

@@ -43,4 +43,11 @@ public class Subscription {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscription_id")
     private List<Book> books;
+
+    public Subscription(String userLogin, String userFullName, String userEmail, boolean borrowAllowed) {
+        this.userLogin = userLogin;
+        this.userFullName = userFullName;
+        this.userEmail = userEmail;
+        this.borrowAllowed = borrowAllowed;
+    }
 }

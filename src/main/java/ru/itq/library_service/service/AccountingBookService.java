@@ -10,5 +10,5 @@ public interface AccountingBookService {
 
     void publishToQueue(List<BookRecord> records);
 
-    void saveOrUpdate(List<BookRecord> records);
+    void saveOrUpdateBatch(List<BookRecord> records);
 }

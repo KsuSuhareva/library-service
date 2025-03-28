@@ -33,4 +33,10 @@ public class Book {
 
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
+
+    public Book(String title, String author, LocalDateTime publishedDate) {
+        this.title = title;
+        this.author = author;
+        this.publishedDate = publishedDate;
+    }
 }
